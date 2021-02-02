@@ -7,18 +7,20 @@ const TS_VERSION = compiletime(() => require("typescript").version);
 const TSTL_VERSION = compiletime(() => require("typescript-to-lua").version);
 
 function tsMain() {
-  print(`Build: ${BUILD_DATE}`);
-  print(`Typescript: v${TS_VERSION}`);
-  print(`Transpiler: v${TSTL_VERSION}`);
-  print(" ");
   print("Welcome to TypeScript!");
+  print(Players);
 
   const unit = new Unit(Players[0], FourCC("hfoo"), 0, 0, 270);
   unit.name = "TypeScript";
 
-  new Timer().start(1.00, true, () => {
-    unit.color = Players[math.random(0, bj_MAX_PLAYERS)].color
+  new Timer().start(1.0, true, () => {
+    unit.color = Players[math.random(0, bj_MAX_PLAYERS)].color;
   });
 }
+
+function tsPlayers() {
+  print(Players);
+}
+let players: Array<string> = [];
 
 addScriptHook(W3TS_HOOK.MAIN_AFTER, tsMain);
